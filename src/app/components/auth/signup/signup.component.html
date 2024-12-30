@@ -1,0 +1,272 @@
+<!-- <div class="bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <h2 class="text-center text-3xl font-extrabold text-gray-900">
+        Create your account
+      </h2>
+    </div>
+  
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">
+              Username
+            </label>
+            <div class="mt-1">
+              <input id="username" formControlName="username" type="text"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('username'), 'border-gray-300': !isFieldInvalid('username')}">
+            </div>
+            <p *ngIf="isFieldInvalid('username')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('username') }}
+            </p>
+          </div>
+  
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <div class="mt-1">
+              <input id="password" formControlName="password" type="password"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('password'), 'border-gray-300': !isFieldInvalid('password')}">
+            </div>
+            <p *ngIf="isFieldInvalid('password')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('password') }}
+            </p>
+          </div>
+  
+          <div>
+            <label for="firstName" class="block text-sm font-medium text-gray-700">
+              First Name
+            </label>
+            <div class="mt-1">
+              <input id="firstName" formControlName="firstName" type="text"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('firstName'), 'border-gray-300': !isFieldInvalid('firstName')}">
+            </div>
+            <p *ngIf="isFieldInvalid('firstName')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('firstName') }}
+            </p>
+          </div>
+  
+          <div>
+            <label for="lastName" class="block text-sm font-medium text-gray-700">
+              Last Name
+            </label>
+            <div class="mt-1">
+              <input id="lastName" formControlName="lastName" type="text"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('lastName'), 'border-gray-300': !isFieldInvalid('lastName')}">
+            </div>
+            <p *ngIf="isFieldInvalid('lastName')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('lastName') }}
+            </p>
+          </div>
+  
+          <div>
+            <label for="cin" class="block text-sm font-medium text-gray-700">
+              CIN
+            </label>
+            <div class="mt-1">
+              <input id="cin" formControlName="cin" type="text"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('cin'), 'border-gray-300': !isFieldInvalid('cin')}">
+            </div>
+            <p *ngIf="isFieldInvalid('cin')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('cin') }}
+            </p>
+          </div>
+  
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <div class="mt-1">
+              <input id="email" formControlName="email" type="email"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('email'), 'border-gray-300': !isFieldInvalid('email')}">
+            </div>
+            <p *ngIf="isFieldInvalid('email')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('email') }}
+            </p>
+          </div>
+  
+          <div>
+            <label for="nationality" class="block text-sm font-medium text-gray-700">
+              Nationality
+            </label>
+            <div class="mt-1">
+              <input id="nationality" formControlName="nationality" type="text"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('nationality'), 'border-gray-300': !isFieldInvalid('nationality')}">
+            </div>
+            <p *ngIf="isFieldInvalid('nationality')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('nationality') }}
+            </p>
+          </div>
+  
+          <div>
+            <label for="role" class="block text-sm font-medium text-gray-700">
+              Role
+            </label>
+            <div class="mt-1">
+              <select id="role" formControlName="role"
+                class="appearance-none block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                [ngClass]="{'border-red-500': isFieldInvalid('role'), 'border-gray-300': !isFieldInvalid('role')}">
+                <option value="ADMIN">ADMIN</option>
+              </select>
+            </div>
+          </div>
+  
+          <div *ngIf="errorMessage" class="text-red-600 text-sm mt-2">
+            {{ errorMessage }}
+          </div>
+  
+          <div>
+            <button type="submit"
+              [disabled]="isSubmitting"
+              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50">
+              <span *ngIf="isSubmitting">Signing up...</span>
+              <span *ngIf="!isSubmitting">Sign up</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+<div class="py-8 bg-gradient-to-r from-emerald-700 to-emerald-900">
+  <div class="max-w-5xl mx-auto font-[sans-serif] p-6 border rounded-lg bg-zinc-50">
+    <div class="text-center mb-16">
+      <a href="javascript:void(0)"><img
+        src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-52 inline-block' />
+      </a>
+      <h4 class="text-gray-800 text-base font-semibold mt-6">Sign up into your account</h4>
+    </div>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="grid sm:grid-cols-2 gap-8">
+        <div>
+          <label class="text-gray-800 text-sm mb-2 block" type="text">User Name</label>
+          <input 
+          id="username" formControlName="username" type="text"
+          name="name" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter name" 
+          [ngClass]="{'border-red-500': isFieldInvalid('username'), 'border-gray-300': !isFieldInvalid('username')}"
+          />
+          <p *ngIf="isFieldInvalid('username')" class="mt-2 text-sm text-red-600">
+            {{ getErrorMessage('username') }}
+          </p>
+        </div>
+        <div>
+          <label class="text-gray-800 text-sm mb-2 block" type="password">Password</label>
+          <input 
+          id="password" formControlName="password" type="password"
+          class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter password"
+          [ngClass]="{'border-red-500': isFieldInvalid('password'), 'border-gray-300': !isFieldInvalid('password')}"
+          />
+          <p *ngIf="isFieldInvalid('password')" class="mt-2 text-sm text-red-600">
+            {{ getErrorMessage('password') }}
+          </p>
+        </div>
+        <!-- First name -->
+        <div>
+          <label class="text-gray-800 text-sm mb-2 block">First Name</label>
+          <input 
+          id="firstName" formControlName="firstName" type="text"
+          name="lname" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter last name" 
+          [ngClass]="{'border-red-500': isFieldInvalid('firstName'), 'border-gray-300': !isFieldInvalid('firstName')}"
+          />
+          <p *ngIf="isFieldInvalid('firstName')" class="mt-2 text-sm text-red-600">
+            {{ getErrorMessage('firstName') }}
+          </p>
+        </div>
+        <!-- Last name -->
+        <div>
+          <label class="text-gray-800 text-sm mb-2 block">Last Name </label>
+          <input 
+          id="lastName" formControlName="lastName" type="text"
+          name="lastName" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter email" 
+          [ngClass]="{'border-red-500': isFieldInvalid('lastName'), 'border-gray-300': !isFieldInvalid('lastName')}"
+          />
+          <p *ngIf="isFieldInvalid('lastName')" class="mt-2 text-sm text-red-600">
+            {{ getErrorMessage('lastName') }}
+          </p>
+        </div>
+          <!-- CIN -->
+          <div>
+            <label class="text-gray-800 text-sm mb-2 block">CIN</label>
+            <input 
+            id="cin" formControlName="cin" type="text"
+            name="number" type="number" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter mobile number" 
+            [ngClass]="{'border-red-500': isFieldInvalid('cin'), 'border-gray-300': !isFieldInvalid('cin')}"
+            />
+            <p *ngIf="isFieldInvalid('cin')" class="mt-2 text-sm text-red-600">
+              {{ getErrorMessage('cin') }}
+            </p>
+          </div>
+        <!-- Email -->
+        <div>
+          <label class="text-gray-800 text-sm mb-2 block">Email </label>
+          <input 
+          id="email" formControlName="email" type="email"
+          name="lastName" type="text" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter email" 
+          [ngClass]="{'border-red-500': isFieldInvalid('email'), 'border-gray-300': !isFieldInvalid('email')}"
+          />
+          <p *ngIf="isFieldInvalid('email')" class="mt-2 text-sm text-red-600">
+            {{ getErrorMessage('email') }}
+          </p>
+        </div>
+      
+      <!-- Nationalité -->
+        <div>
+          <label class="text-gray-800 text-sm mb-2 block">Nationality</label>
+          <input 
+          id="nationality" formControlName="nationality" type="text"
+          class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter confirm password" 
+          [ngClass]="{'border-red-500': isFieldInvalid('nationality'), 'border-gray-300': !isFieldInvalid('nationality')}"
+          />
+          <p *ngIf="isFieldInvalid('nationality')" class="mt-2 text-sm text-red-600">
+            {{ getErrorMessage('nationality') }}
+          </p>
+        </div>
+       
+        <!-- Role -->
+        <div>
+          <label class="text-gray-800 text-sm mb-2 block">Role</label>
+          <!-- <input name="number" type="number" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter mobile number" /> -->
+          <div class="mt-1">
+            <select id="role" formControlName="role"
+              class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all"
+              [ngClass]="{'border-red-500': isFieldInvalid('role'), 'border-gray-300': !isFieldInvalid('role')}">
+              <option value="ADMIN">ADMIN</option>
+              <option value="ADMIN">MEMBER</option>
+              <option value="ADMIN">JURY</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error message -->
+      <div *ngIf="errorMessage" class="text-red-600 text-sm mt-2">
+        {{ errorMessage }}
+      </div>
+
+      <div class="!mt-12 w-full flex justify-center">
+        <button 
+        type="submit" [disabled]="isSubmitting" class="mt-6 rounded-lg bg-lime-800 px-4 py-2 text-center text-base font-semibold text-white shadow-md outline-none ring-lime-600 ring-offset-2 transition hover:bg-lime-600 focus:ring-2 md:w-1/2">
+          Sign up
+        </button>
+      </div>
+    </form>
+    <div class="py-12 text-center">
+      <p class="text-gray-600">
+        You have already account?
+        <a class="whitespace-nowrap font-semibold text-gray-900 underline underline-offset-4">Sign up for free.</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+  
