@@ -30,7 +30,7 @@ export class SignupComponent {
       cin: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       nationality: ['', Validators.required],
-      role: ['ADMIN', Validators.required]
+      role: ['MEMBER']
     });
   }
 

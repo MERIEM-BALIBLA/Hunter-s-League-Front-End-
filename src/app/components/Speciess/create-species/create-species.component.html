@@ -1,0 +1,81 @@
+<!-- Modal -->
+<input type="checkbox" id="my_modal_6" class="modal-toggle" />
+<div class="modal" role="dialog">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Create a new Species </h3>
+
+    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+        <!-- name -->
+        <div class="flex flex-col pt-4">
+            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+              <input 
+              formControlName="name" 
+              id="name" 
+              type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="name" />
+            </div>
+        </div>
+
+        <!-- category -->
+        <div class="flex flex-col pt-4">
+            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                <select id="category" formControlName="category"
+                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all">
+                    <!-- <option value="none">Choose category</option> -->
+                    <option value="SEA">SEA</option>
+                    <option value="BIG-GAME">BIG GAME</option>
+                    <option value="BIRD">BIRD</option>
+              </select>
+            </div>
+        </div>
+
+        <!-- weight -->
+        <div class="flex flex-col pt-4">
+            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+              <input 
+              formControlName="minimumWeight" 
+              id="minimumWeight"
+              type="number" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="minimum Weight" />
+            </div>
+        </div>
+
+        <!-- difficulty -->
+        <div class="flex flex-col pt-4">
+            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                <select id="difficulty" formControlName="difficulty"
+                        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all">
+                        <!-- <option value="none">Choose difficulty</option> -->
+                        <option value="COMMON">COMMON</option>
+                        <option value="RARE">RARE</option>
+                        <option value="EPIC">EPIC</option>
+                        <option value="LEGENDARY">LEGENDARY</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- points -->
+        <div class="flex flex-col pt-4">
+            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+              <input 
+              formControlName="points" 
+              id="points" 
+              type="number" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="points" />
+            </div>
+        </div>
+        <div class="modal-action">
+          <button type="submit" class="btn bg-lime-800 ring-lime-600 text-white ring-offset-2 transition hover:bg-lime-600 focus:ring-2">
+              Save
+          </button>
+          <label for="my_modal_6" class="btn">Close!</label>
+      </div>
+    </form>
+
+    <!-- <div class="modal-action">
+        <button 
+          class="btn bg-lime-800 ring-lime-600 text-white ring-offset-2 transition hover:bg-lime-600 focus:ring-2 ">
+          Save
+        </button>
+        <label for="my_modal_6" class="btn">Close!</label>
+    </div> -->
+
+  </div>
+</div>

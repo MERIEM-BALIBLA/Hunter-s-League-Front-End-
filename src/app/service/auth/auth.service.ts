@@ -2,8 +2,8 @@ import { Inject, Injectable, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, tap } from 'rxjs';
 import { catchError } from 'rxjs/operators'; 
-import { SignUpRequest } from '../../interface/signup-request.interface'; 
-import { LoginRequest } from '../../interface/login-request.interface';
+import { SignUpRequest } from '../../interface/auth/signup-request.interface'; 
+import { LoginRequest } from '../../interface/auth/login-request.interface';
 import { Router } from '@angular/router';
 
 
@@ -54,6 +54,23 @@ export class AuthService {
       tap((token: string) => {
         // Stocker le token JWT dans le localStorage
         localStorage.setItem('jwt', token);
+
+         // Extraire le rôle à partir du token JWT
+      const tokenParts = token.split('.');  // Séparer le token en 3 parties (header, payload, signature)
+
+      if (tokenParts.length === 3) {
+        // Décoder la partie payload (au milieu)
+        const decodedPayload = atob(tokenParts[1]);
+
+        // Convertir la chaîne décodée en objet JSON
+        const payload = JSON.parse(decodedPayload);
+
+        // Extraire le rôle
+        const userRole = payload.role;  // Récupérer le rôle à partir du payload
+
+        // Stocker le rôle dans localStorage
+        localStorage.setItem('userRole', userRole);
+      }
         this.isLoggedIn.update(() => true)
       })
     );
@@ -64,6 +81,31 @@ export class AuthService {
     this.isLoggedIn.update(() => false)
     this.router.navigate(['/login']);
   }
+
+  getRole(){
+    tap((token: string) => {
+      // Stocker le token JWT dans le localStorage
+      localStorage.setItem('jwt', token);
+
+       // Extraire le rôle à partir du token JWT
+    const tokenParts = token.split('.');  // Séparer le token en 3 parties (header, payload, signature)
+
+    if (tokenParts.length === 3) {
+      // Décoder la partie payload (au milieu)
+      const decodedPayload = atob(tokenParts[1]);
+
+      // Convertir la chaîne décodée en objet JSON
+      const payload = JSON.parse(decodedPayload);
+
+      // Extraire le rôle
+      const userRole = payload.role;  // Récupérer le rôle à partir du payload
+
+      // Stocker le rôle dans localStorage
+      localStorage.setItem('userRole', userRole);
+    }
+    })
+  }
+
   
   
 }

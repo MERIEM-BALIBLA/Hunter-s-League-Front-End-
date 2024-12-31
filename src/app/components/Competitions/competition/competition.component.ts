@@ -1,10 +1,11 @@
 // import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { CreateCompetitionComponent } from '../create-competition/create-competition.component';
 
 @Component({
   selector: 'app-competition',
   standalone: true,
-  imports: [],
+  imports: [CreateCompetitionComponent],
   templateUrl: './competition.component.html',
   styleUrl: './competition.component.css'
 })

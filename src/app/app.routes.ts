@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
-import { UserComponent } from './components/user/user.component';
+import { UserComponent } from './components/Users/user/user.component';
 import { CompetitionComponent } from './components/Competitions/competition/competition.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { authGuardGuard } from './guard/auth/auth-guard.guard';
+import { roleGuardGuard } from './guard/role/role-guard.guard';
+import { UnauthorisedComponent } from './components/unauthorised/unauthorised.component';
+import { SpeciesComponent } from './components/Speciess/species/species.component';
 
 export const routes: Routes = [
     {
@@ -17,11 +21,15 @@ export const routes: Routes = [
     },
     {
         path: "users",
-        component: UserComponent
+        component: UserComponent,
+        canActivate: [authGuardGuard]
     },
     {
         path: "competitions",
-        component: CompetitionComponent
+        component: CompetitionComponent,
+        canActivate: [authGuardGuard, roleGuardGuard],
+        data: { roles: ['ADMIN'] } 
+
     },
     {
         path: "login",
@@ -30,5 +38,19 @@ export const routes: Routes = [
     {
         path: "register",
         component: SignupComponent
+    },
+
+    // species
+    {
+        path: "species",
+        component: SpeciesComponent,
+        canActivate: [authGuardGuard, roleGuardGuard],
+        data: { roles: ['ADMIN'] } 
+    },
+
+
+    {
+        path: "unauthorised",
+        component: UnauthorisedComponent
     }
 ];

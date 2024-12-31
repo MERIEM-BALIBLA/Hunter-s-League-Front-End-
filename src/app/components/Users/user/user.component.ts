@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { SideBarComponent } from '../../side-bar/side-bar.component';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [SideBarComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
