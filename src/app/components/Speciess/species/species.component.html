@@ -33,8 +33,10 @@
               <td class="px-6 py-4">{{ species.difficulty }}</td>
               <td class="px-6 py-4">{{ species.points }}</td>
               <td class="flex items-center px-6 py-4">
-                <button for="my_modal_7" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
-                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
+                <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+
+                <button onclick="my_modal_1.showModal()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                <button (click)="onDelete(species.id)" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
               </td>
             </tr>
           </tbody>
@@ -51,7 +53,7 @@
 <label
   for="my_modal_6" class="btn"
   title="Add New"
-  class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute right-4"
+  class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute right-4 top-60"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -70,4 +72,4 @@
 </label>
 
 <app-create-species/>
-<!-- <app-update-species/> -->
+<app-update-species/>

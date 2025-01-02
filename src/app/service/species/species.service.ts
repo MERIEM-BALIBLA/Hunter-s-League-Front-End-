@@ -1,12 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 export interface Species {
+  id: string;
   name: string;
   category: string;
-  minimumWeight: string;
+  minimumWeight: number;
   difficulty: string;
   points: number;
 }
@@ -27,11 +28,16 @@ export class SpeciesService {
     );
   }
 
-  save(data: Species): Observable<void> {
-    console.log('Sending to backend:', data);
-    return this.http.post<void>(`${this.BASE_URL}/addSpecies`, data).pipe(
-        tap(response => console.log('Backend response:', response))
+  save(species: Species): Observable<Species> {
+    return this.http.post<Species>(`${this.BASE_URL}/addSpecies`, species).pipe(
+      catchError(error => {
+        console.error('Error saving species', error);
+        return throwError(() => new Error('Error saving species'));
+      })
     );
-}
+  }
 
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.BASE_URL}/${id}`);
+  }  
 }

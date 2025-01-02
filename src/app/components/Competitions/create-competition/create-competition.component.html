@@ -1,56 +1,72 @@
-<dialog id="my_modal_1" class="modal">
-    <div class="modal-box">
-      <h3 class="text-lg font-bold">Hello!</h3>
-      <p class="py-4">Press ESC key or click the button below to close</p>
-      <div>
-        <form >
-            <div class="flex flex-col pt-4">
-                <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                  <input 
-                  formControlName="location" 
-                  id="location" 
-                  type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="location" />
-                </div>
+
+<dialog id="my_modal_4" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div>
+      <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+          <div class="flex flex-col pt-4">
+              <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                <input 
+                formControlName="location" 
+                id="location" 
+                type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="location" />
+              </div>
+          </div>
+          <div class="flex flex-col pt-4">
+            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+              <input 
+                formControlName="date" 
+                id="date" 
+                type="datetime-local" 
+                class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" 
+                placeholder="date and time" 
+              />
             </div>
-            <div class="flex flex-col pt-4">
-                <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                  <input 
-                  formControlName="date" 
-                  id="date" 
-                  type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="date" />
-                </div>
-            </div>
-            <div class="flex flex-col pt-4">
-                <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                  <input 
-                  formControlName="speciesType" 
-                  id="speciesType" 
-                  type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="species type" />
-                </div>
-            </div>
-            <div class="flex flex-col pt-4">
-                <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                  <input 
-                  formControlName="minParticipants" 
-                  id="minParticipants" 
-                  type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="min Participants" />
-                </div>
-            </div>
-            <div class="flex flex-col pt-4">
-                <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                  <input 
-                  formControlName="maxParticipants" 
-                  id="maxParticipants" 
-                  type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="max Participants" />
-                </div>
-            </div>
-            <div class="modal-action">
-                <button type="submit" class="btn bg-lime-800 ring-lime-600 text-white ring-offset-2 transition hover:bg-lime-600 focus:ring-2">
-                    Save
-                </button>
-                <button class="btn">Close</button>
-            </div>
-        </form>
-      </div>
+          </div>
+          
+            <!-- Difficulty -->
+          <div class="flex flex-col pt-4">
+              <select
+                id="speciesType"
+                formControlName="speciesType"
+                class="w-full bg-gray-100 text-gray-800 text-sm px-4 py-3.5 rounded-md focus:outline-none"
+              >
+                <option value="" disabled>Choose species</option>
+                  <option value="BIG_GAME">BIG_GAME</option>
+                  <option value="SEA">SEA</option>
+                  <option value="BIRD">BIRD</option>
+              </select>
+          </div>
+
+          <div class="flex flex-col pt-4">
+              <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                <input 
+                formControlName="minParticipants" 
+                id="minParticipants" 
+                type="number" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="min Participants" />
+              </div>
+          </div>
+          <div class="flex flex-col pt-4">
+              <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
+                <input 
+                formControlName="maxParticipants" 
+                id="maxParticipants" 
+                type="number" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="max Participants" />
+              </div>
+          </div>
+          <div class="modal-action">
+            <button
+            type="submit"
+            class="btn bg-lime-800 ring-lime-600 text-white ring-offset-2 transition hover:bg-lime-600 focus:ring-2"
+        
+            >
+            Save
+          </button>
+          
+              <button class="btn">Close</button>
+          </div>
+      </form>
     </div>
-  </dialog>
+  </div>
+</dialog>

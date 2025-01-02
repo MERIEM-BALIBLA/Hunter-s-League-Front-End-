@@ -2,55 +2,66 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SpeciesService } from '../../../service/species/species.service';
 import { Router } from '@angular/router';
-import { UpdateSpeciesComponent } from '../update-species/update-species.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-species',
   standalone: true,
-  imports: [ReactiveFormsModule, UpdateSpeciesComponent],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './create-species.component.html',
-  styleUrl: './create-species.component.css'
+  styleUrls: ['./create-species.component.css']
 })
 export class CreateSpeciesComponent {
-    Form: FormGroup;
-    isSubmitting = false;
-    errorMessage = '';
+  Form: FormGroup;
+  isSubmitting = false;
+  errorMessage = '';
+  successMessage = ''; 
 
-    constructor(
-        private fb: FormBuilder,
-        private specieService: SpeciesService,
-        private router: Router
-    )
-      {
-          this.Form = this.fb.group({
-            name: ['', [Validators.required, Validators.minLength(3)]],
-            category: [''],  // Add the 'category' control here
-            minimumWeight: ['', Validators.required],
-            difficulty: ['', Validators.required],
-            points: [''],
-          });
+  constructor(
+    private fb: FormBuilder,
+    private speciesService: SpeciesService,
+    private router: Router
+  ) {
+    this.Form = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      category: ['', Validators.required],
+      minimumWeight: ['', [Validators.required, Validators.min(0)]],
+      difficulty: ['', Validators.required],
+      points: ['', Validators.min(0)],
+    });
+  }
+
+  onSubmit(): void {
+    if (this.Form.valid) {
+      this.isSubmitting = true;
+      this.speciesService.save(this.Form.value).subscribe({
+        next: () => {
+          this.isSubmitting = false;
+          this.successMessage = 'Species added successfully!'; // Message de succès
+          this.errorMessage = ''; // Réinitialiser le message d'erreur si la soumission est réussie
+
+          // Fermer la modale après une soumission réussie
+          const modal = document.getElementById('my_modal_6') as HTMLInputElement;
+          if (modal) modal.checked = false; // Cela ferme la modale en décochant la case
+
+          // Réinitialiser le formulaire
+          this.Form.reset();
+        },
+        error: (error) => {
+          this.isSubmitting = false;
+          this.errorMessage = 'Failed to add species';
+          this.successMessage = ''; // Réinitialiser le message de succès si une erreur se produit
+          console.error('Failed to add species', error);
         }
-      
-        onSubmit() {
-          if (this.Form.valid) {
-              const formData = {
-                  ...this.Form.value,
-                  minimumWeight: Number(this.Form.value.minimumWeight),
-                  points: Number(this.Form.value.points)
-              };
-      
-              this.specieService.save(formData).subscribe({
-                  next: () => {
-                      this.router.navigate(['/species']);
-                      // Close modal
-                      document.getElementById('my_modal_6')?.click();
-                  },
-                  error: (error) => {
-                      console.error('Error response:', error);
-                      this.errorMessage = error.error?.message || 'Failed to create species';
-                  }
-              });
-          }
-      }
-      
+      });
+    } else {
+      this.errorMessage = 'Please fill in all required fields correctly.';
+      this.successMessage = ''; // Réinitialiser le message de succès si la soumission échoue
+    }
+  }
+
+  onCancel(): void {
+    const modal = document.getElementById('my_modal_6') as HTMLInputElement;
+    if (modal) modal.checked = false;
+  }
 }

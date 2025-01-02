@@ -1,0 +1,21 @@
+<div class="container mx-auto py-10">
+	<div *ngFor="let competition of competitions" class="card card-side bg-base-100 shadow-xl mb-4">
+	  <figure class="w-1/4">
+		<img class=""
+		  src="https://www.outdoorlife.com/wp-content/uploads/2019/01/22/FZHGTXQ7L3XVNNNBUZCYM3OWK4.png?quality=85"
+		  alt="Competition" />
+	  </figure>
+	  <div class="card-body">
+		<h2 class="card-title">Competition: {{competition.code}}</h2>
+		<p>Location: {{competition.location}}</p>
+		<p>Date: {{competition.date | date}}</p>
+		<p>Species Type: {{competition.speciesType}}</p>
+		<p>Max Participants: {{competition.maxParticipants}}</p>
+		<div class="card-actions justify-end">
+		  <button class="btn" [disabled]="!competition.openRegistration">
+			{{competition.openRegistration ? 'Participate' : 'Registration Closed'}}
+		  </button>
+		</div>
+	  </div>
+	</div>
+  </div>

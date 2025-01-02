@@ -1,28 +1,45 @@
 // import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CreateCompetitionComponent } from '../create-competition/create-competition.component';
+import { CommonModule } from '@angular/common';
+import { Competition, CompetitionService } from '../../../service/competition/competition.service';
 
 @Component({
   selector: 'app-competition',
   standalone: true,
-  imports: [CreateCompetitionComponent],
+  imports: [CreateCompetitionComponent, CommonModule],
   templateUrl: './competition.component.html',
   styleUrl: './competition.component.css'
 })
-export class CompetitionComponent 
-// implements OnInit
+
+export class CompetitionComponent implements OnInit
  {
-  // http = inject(HttpClient);
-  // competitions: any = [];
+ competitions: Competition[] = [];
+ 
+   constructor(private competitionService: CompetitionService) {}
+ 
+   ngOnInit() {
+     this.competitionService.getCompetitions().subscribe({
+       next: (data) => {
+         this.competitions = data;
+       },
+       error: (error) => {
+         console.error('Error fetching competitions:', error);
+       }
+     });
+   }
 
-  // ngOnInit(): void {
-
-  // }
-
-  // fetchCompetitions() {
-  //   this.http.get<any[]>('https://localhost:8080/api/competitions/list')
-  //     .subscribe((competitions: any) =>{
-  //       console.log(competitions)
-  //     });
-  // }
+ 
+  onDelete(id: string): void {
+    console.log('ID à supprimer:', id); // Vérifier la valeur de l'ID
+    this.competitionService.delete(id).subscribe({
+      next: () => {
+        this.competitions = this.competitions.filter(competition => competition.id !== id);
+      },
+      error: (error) => {
+        console.error('Failed to delete species:', error);
+      }
+    });
+  }
+  
 }

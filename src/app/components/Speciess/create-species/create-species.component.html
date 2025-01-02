@@ -2,80 +2,105 @@
 <input type="checkbox" id="my_modal_6" class="modal-toggle" />
 <div class="modal" role="dialog">
   <div class="modal-box">
-    <h3 class="text-lg font-bold">Create a new Species </h3>
+    <h3 class="text-lg font-bold">Create a new Species</h3>
 
     <form [formGroup]="Form" (ngSubmit)="onSubmit()">
-        <!-- name -->
-        <div class="flex flex-col pt-4">
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input 
-              formControlName="name" 
-              id="name" 
-              type="text" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="name" />
-            </div>
+      <!-- Name -->
+      <div class="flex flex-col pt-4">
+        <input
+          formControlName="name"
+          id="name"
+          type="text"
+          class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
+          placeholder="Name"
+        />
+        <div *ngIf="Form.controls['name'].invalid && Form.controls['name'].touched" class="text-red-500">
+          Name is required and must be at least 3 characters long.
         </div>
+      </div>
 
-        <!-- category -->
-        <div class="flex flex-col pt-4">
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                <select id="category" formControlName="category"
-                    class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all">
-                    <!-- <option value="none">Choose category</option> -->
-                    <option value="SEA">SEA</option>
-                    <option value="BIG-GAME">BIG GAME</option>
-                    <option value="BIRD">BIRD</option>
-              </select>
-            </div>
+      <!-- Category -->
+      <div class="flex flex-col pt-4">
+        <select
+          id="category"
+          formControlName="category"
+          class="w-full bg-gray-100 text-gray-800 text-sm px-4 py-3.5 rounded-md focus:outline-none"
+        >
+          <option value="" disabled selected>Choose category</option>
+          <option value="SEA">SEA</option>
+          <option value="BIG-GAME">BIG GAME</option>
+          <option value="BIRD">BIRD</option>
+        </select>
+        <div *ngIf="Form.controls['category'].invalid && Form.controls['category'].touched" class="text-red-500">
+          Category is required.
         </div>
+      </div>
 
-        <!-- weight -->
-        <div class="flex flex-col pt-4">
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input 
-              formControlName="minimumWeight" 
-              id="minimumWeight"
-              type="number" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="minimum Weight" />
-            </div>
+      <!-- Minimum Weight -->
+      <div class="flex flex-col pt-4">
+        <input
+          formControlName="minimumWeight"
+          id="minimumWeight"
+          type="number"
+          class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
+          placeholder="Minimum Weight"
+        />
+        <div *ngIf="Form.controls['minimumWeight'].invalid && Form.controls['minimumWeight'].touched" class="text-red-500">
+          Minimum weight is required and must be positive.
         </div>
+      </div>
 
-        <!-- difficulty -->
-        <div class="flex flex-col pt-4">
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-                <select id="difficulty" formControlName="difficulty"
-                        class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all">
-                        <!-- <option value="none">Choose difficulty</option> -->
-                        <option value="COMMON">COMMON</option>
-                        <option value="RARE">RARE</option>
-                        <option value="EPIC">EPIC</option>
-                        <option value="LEGENDARY">LEGENDARY</option>
-                </select>
-            </div>
+      <!-- Difficulty -->
+      <div class="flex flex-col pt-4">
+        <select
+          id="difficulty"
+          formControlName="difficulty"
+          class="w-full bg-gray-100 text-gray-800 text-sm px-4 py-3.5 rounded-md focus:outline-none"
+        >
+          <option value="" disabled selected>Choose difficulty</option>
+          <option value="COMMON">COMMON</option>
+          <option value="RARE">RARE</option>
+          <option value="EPIC">EPIC</option>
+          <option value="LEGENDARY">LEGENDARY</option>
+        </select>
+        <div *ngIf="Form.controls['difficulty'].invalid && Form.controls['difficulty'].touched" class="text-red-500">
+          Difficulty is required.
         </div>
+      </div>
 
-        <!-- points -->
-        <div class="flex flex-col pt-4">
-            <div class="relative flex overflow-hidden rounded-md border-2 transition focus-within:border-blue-600">
-              <input 
-              formControlName="points" 
-              id="points" 
-              type="number" class="w-full flex-shrink appearance-none border-gray-300 bg-white py-2 px-4 text-base text-gray-700 placeholder-gray-400 focus:outline-none" placeholder="points" />
-            </div>
+      <!-- Points -->
+      <div class="flex flex-col pt-4">
+        <input
+          formControlName="points"
+          id="points"
+          type="number"
+          class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
+          placeholder="Points"
+        />
+        <div *ngIf="Form.controls['points'].invalid && Form.controls['points'].touched" class="text-red-500">
+          Points must be positive.
         </div>
-        <div class="modal-action">
-          <button type="submit" class="btn bg-lime-800 ring-lime-600 text-white ring-offset-2 transition hover:bg-lime-600 focus:ring-2">
-              Save
-          </button>
-          <label for="my_modal_6" class="btn">Close!</label>
+      </div>
+
+      <!-- Actions -->
+      <div class="modal-action">
+        <button
+          type="submit"
+          class="btn bg-lime-800 text-white hover:bg-lime-600"
+          [disabled]="isSubmitting || Form.invalid"
+        >
+          Save
+        </button>
+        <label for="my_modal_6" class="btn" >Close</label>
       </div>
     </form>
 
-    <!-- <div class="modal-action">
-        <button 
-          class="btn bg-lime-800 ring-lime-600 text-white ring-offset-2 transition hover:bg-lime-600 focus:ring-2 ">
-          Save
-        </button>
-        <label for="my_modal_6" class="btn">Close!</label>
-    </div> -->
-
+    <!-- Success or Error Message -->
+    <div *ngIf="successMessage" class="text-green-500 mt-4">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="text-red-500 mt-4">
+      {{ errorMessage }}
+    </div>
   </div>
 </div>

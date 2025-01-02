@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { UserComponent } from './components/Users/user/user.component';
-import { CompetitionComponent } from './components/Competitions/competition/competition.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/Page/home/home.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { authGuardGuard } from './guard/auth/auth-guard.guard';
 import { roleGuardGuard } from './guard/role/role-guard.guard';
 import { UnauthorisedComponent } from './components/unauthorised/unauthorised.component';
+import { CompetitionComponent } from './components/Competitions/competition/competition.component';
 import { SpeciesComponent } from './components/Speciess/species/species.component';
 
 export const routes: Routes = [
@@ -22,7 +22,8 @@ export const routes: Routes = [
     {
         path: "users",
         component: UserComponent,
-        canActivate: [authGuardGuard]
+        canActivate: [authGuardGuard, roleGuardGuard],
+        data: { roles: ['ADMIN'] } 
     },
     {
         path: "competitions",
@@ -31,6 +32,7 @@ export const routes: Routes = [
         data: { roles: ['ADMIN'] } 
 
     },
+    
     {
         path: "login",
         component: LoginComponent
