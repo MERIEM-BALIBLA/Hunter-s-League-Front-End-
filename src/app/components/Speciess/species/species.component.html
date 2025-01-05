@@ -1,75 +1,80 @@
-<div class="container mx-auto py-12 relative">
-    <div class="shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="p-4">
-                <div class="flex items-center">
-                  <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                </div>
-              </th>
-              <th scope="col" class="px-6 py-3">Species Name</th>
-              <th scope="col" class="px-6 py-3">Category</th>
-              <th scope="col" class="px-6 py-3">Minimum Weight</th>
-              <th scope="col" class="px-6 py-3">difficulty</th>
-              <th scope="col" class="px-6 py-3">Points</th>
-              <th scope="col" class="px-6 py-3"></th>
-          </thead>
-          <tbody>
-            <!-- Use *ngFor to iterate over speciesList and display each row -->
-            <tr *ngFor="let species of speciesList" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-              <td class="w-4 p-4">
-                <div class="flex items-center">
-                  <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                </div>
-              </td>
-              <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ species.name }}
-              </td>
-              <td class="px-6 py-4">{{ species.category }}</td>
-              <td class="px-6 py-4">{{ species.minimumWeight }}</td>
-              <td class="px-6 py-4">{{ species.difficulty }}</td>
-              <td class="px-6 py-4">{{ species.points }}</td>
-              <td class="flex items-center px-6 py-4">
-                <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+<body class="relative bg-yellow-50 overflow-hidden max-h-screen flex">
+  <app-side/>
 
-                <button onclick="my_modal_1.showModal()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
-                <button (click)="onDelete(species.id)" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-    
-        <!-- Display no data message if speciesList is empty -->
-        <ng-template #noData>
-          <p class="text-center py-4">No species data available.</p>
-        </ng-template>
-      </div>
-</div>
+  <div class="container mx-auto py-12 relative p-8">
+      <div class="shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="p-4">
+                  <div class="flex items-center">
+                    <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="checkbox-all-search" class="sr-only">checkbox</label>
+                  </div>
+                </th>
+                <th scope="col" class="px-6 py-3">Species Name</th>
+                <th scope="col" class="px-6 py-3">Category</th>
+                <th scope="col" class="px-6 py-3">Minimum Weight</th>
+                <th scope="col" class="px-6 py-3">difficulty</th>
+                <th scope="col" class="px-6 py-3">Points</th>
+                <th scope="col" class="px-6 py-3"></th>
+            </thead>
+            <tbody>
+              <!-- Use *ngFor to iterate over speciesList and display each row -->
+              <tr *ngFor="let species of speciesList" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="w-4 p-4">
+                  <div class="flex items-center">
+                    <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                  </div>
+                </td>
+                <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{ species.name }}
+                </td>
+                <td class="px-6 py-4">{{ species.category }}</td>
+                <td class="px-6 py-4">{{ species.minimumWeight }}</td>
+                <td class="px-6 py-4">{{ species.difficulty }}</td>
+                <td class="px-6 py-4">{{ species.points }}</td>
+                <td class="flex items-center px-6 py-4">
+                  <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
 
-<!-- Modal button -->
-<label
-  for="my_modal_6" class="btn"
-  title="Add New"
-  class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute right-4 top-60"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="50px"
-    height="50px"
-    viewBox="0 0 24 24"
-    class="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
+                  <button onclick="my_modal_1.showModal()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                  <button (click)="onDelete(species.id)" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      
+          <!-- Display no data message if speciesList is empty -->
+          <ng-template #noData>
+            <p class="text-center py-4">No species data available.</p>
+          </ng-template>
+        </div>
+  </div>
+
+  <!-- Modal button -->
+  <label
+    for="my_modal_6" class="btn"
+    title="Add New"
+    class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute right-4 top-60"
   >
-    <path
-      d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-      stroke-width="1.5"
-    ></path>
-    <path d="M8 12H16" stroke-width="1.5"></path>
-    <path d="M12 16V8" stroke-width="1.5"></path>
-  </svg>
-</label>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="50px"
+      height="50px"
+      viewBox="0 0 24 24"
+      class="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
+    >
+      <path
+        d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+        stroke-width="1.5"
+      ></path>
+      <path d="M8 12H16" stroke-width="1.5"></path>
+      <path d="M12 16V8" stroke-width="1.5"></path>
+    </svg>
+  </label>
 
-<app-create-species/>
-<app-update-species/>
+  <app-create-species/>
+  <app-update-species/>
+
+</body>

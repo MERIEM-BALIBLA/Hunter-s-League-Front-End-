@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SpeciesService } from '../../../service/species/species.service';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,7 +19,6 @@ export class CreateSpeciesComponent {
   constructor(
     private fb: FormBuilder,
     private speciesService: SpeciesService,
-    private router: Router
   ) {
     this.Form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],

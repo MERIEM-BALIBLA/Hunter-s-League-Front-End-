@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { CreateSpeciesComponent } from '../create-species/create-species.component';
 import { Species, SpeciesService } from '../../../service/species/species.service';
 import { UpdateSpeciesComponent } from '../update-species/update-species.component';
+import { SideComponent } from '../../Admin/Barr/side/side.component';
 
 @Component({
   selector: 'app-species',
   templateUrl: './species.component.html',
   styleUrls: ['./species.component.css'],
   standalone: true,
-  imports: [CommonModule, CreateSpeciesComponent, UpdateSpeciesComponent]
+  imports: [CommonModule, CreateSpeciesComponent, UpdateSpeciesComponent, SideComponent]
 })
 export class SpeciesComponent implements OnInit {
   speciesList: Species[] = []; // Array to hold species data

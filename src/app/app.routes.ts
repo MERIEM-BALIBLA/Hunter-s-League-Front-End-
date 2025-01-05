@@ -8,12 +8,14 @@ import { roleGuardGuard } from './guard/role/role-guard.guard';
 import { UnauthorisedComponent } from './components/unauthorised/unauthorised.component';
 import { CompetitionComponent } from './components/Competitions/competition/competition.component';
 import { SpeciesComponent } from './components/Speciess/species/species.component';
+import { DashboardComponent } from './components/Admin/dashboard/dashboard.component';
+import { ProfileComponent } from './components/Page/profile/profile.component';
 
 export const routes: Routes = [
     {
         path: "",
         component: HomeComponent,
-        pathMatch: "full"
+        // pathMatch: "full"
     },
     {
         path: "home",
@@ -54,5 +56,17 @@ export const routes: Routes = [
     {
         path: "unauthorised",
         component: UnauthorisedComponent
+    },
+    {
+        path: "dash",
+        component: DashboardComponent,
+        canActivate: [authGuardGuard, roleGuardGuard],
+        data: { roles: ['ADMIN'] } 
+    },
+    {
+        path: "settings",
+        component: ProfileComponent,
+        canActivate: [authGuardGuard],
+        // data: {role: ['MEMBER']}
     }
 ];

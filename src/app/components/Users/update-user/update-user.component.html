@@ -1,1 +1,64 @@
-<p>update-user works!</p>
+<!-- <dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Update User</h3>
+    <p class="py-4">Modify the fields below and submit to update the user.</p>
+    <div>
+      <form >
+        <div class="flex flex-col pt-4">
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
+            placeholder="First name"
+          />
+          <div *ngIf="Form.get('firstName')?.invalid && isSubmit" class="text-red-500 text-sm">
+            First name is required (min 3 characters).
+          </div>
+        </div>
+        <div class="flex flex-col pt-4">
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
+            placeholder="Last name"
+          />
+          <div *ngIf="Form.get('lastName')?.invalid && isSubmit" class="text-red-500 text-sm">
+            Last name is required (min 3 characters).
+          </div>
+        </div>
+        <div class="flex flex-col pt-4">
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
+            placeholder="Email"
+          />
+          <div *ngIf="Form.get('email')?.invalid && isSubmit" class="text-red-500 text-sm">
+            Valid email is required.
+          </div>
+        </div>
+
+        <div class="flex flex-col pt-4">
+          <select id="role" formControlName="role" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all">
+            <option value="ADMIN">ADMIN</option>
+            <option value="MEMBER">MEMBER</option>
+            <option value="JURY">JURY</option>
+          </select>
+          <div *ngIf="Form.get('role')?.invalid && isSubmit" class="text-red-500 text-sm">
+            Role is required.
+          </div>
+        </div>
+
+        <div class="modal-action">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn" (click)="Form.reset()">Reset</button>
+        </div>
+      </form>
+      <div *ngIf="successMessage" class="text-green-500 mt-4">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</div>
+    </div>
+  </div>
+</dialog> -->

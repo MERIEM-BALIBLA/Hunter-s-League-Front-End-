@@ -1,0 +1,23 @@
+<dialog id="my_modal_1" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Hello!</h3>
+      <p class="py-4">Press ESC key or click the button below to close</p>
+      <div>
+        <form [formGroup]="userRoleForm" (ngSubmit)="updateRole()">
+            <!-- <input type="hidden" formControlName="id"/> -->
+          <div class="flex flex-col pt-4">
+            <select id="role" formControlName="role" class="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all">
+              <option value="ADMIN">ADMIN</option>
+              <option value="MEMBER">MEMBER</option>
+              <option value="JURY">JURY</option>
+            </select>
+          </div>
+          <div class="modal-action">
+            <button type="button" class="btn" (click)="updateRole()">Save</button>
+            <button type="button" class="btn" (click)="close()">Close</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+  

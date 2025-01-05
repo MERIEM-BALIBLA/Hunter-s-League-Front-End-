@@ -1,5 +1,6 @@
-
-<div class="container mx-auto py-12 relative">
+<body class="relative bg-yellow-50 overflow-hidden max-h-screen flex">
+  <app-side/>
+<div class="container mx-auto py-12 relative p-8">
   <div class="shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -17,9 +18,10 @@
             <th scope="col" class="px-6 py-3">Min </th>
             <th scope="col" class="px-6 py-3">Max </th>
             <th scope="col" class="px-6 py-3"></th>
+            <th scope="col" class="px-6 py-3"></th>
+
         </thead>
         <tbody>
-          <!-- Use *ngFor to iterate over speciesList and display each row -->
           <tr *ngFor="let competition of competitions" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td class="w-4 p-4">
               <div class="flex items-center">
@@ -48,11 +50,10 @@
     </div>
 </div>
 
-<!-- Modal button -->
 <label
 onclick="my_modal_4.showModal()" class="btn"
   title="Add New"
-  class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute right-4 top-60"
+  class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute right-4 "
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -69,6 +70,7 @@ onclick="my_modal_4.showModal()" class="btn"
     <path d="M12 16V8" stroke-width="1.5"></path>
   </svg>
 </label>
-<!-- <button class="btn" onclick="my_modal_4.showModal()">open modal</button> -->
 
 <app-create-competition/>
+
+</body>

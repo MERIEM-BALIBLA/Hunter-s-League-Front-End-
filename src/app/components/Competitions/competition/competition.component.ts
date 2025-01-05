@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { CreateCompetitionComponent } from '../create-competition/create-competition.component';
 import { CommonModule } from '@angular/common';
 import { Competition, CompetitionService } from '../../../service/competition/competition.service';
+import { SideComponent } from '../../Admin/Barr/side/side.component';
 
 @Component({
   selector: 'app-competition',
   standalone: true,
-  imports: [CreateCompetitionComponent, CommonModule],
+  imports: [CreateCompetitionComponent, CommonModule, SideComponent],
   templateUrl: './competition.component.html',
   styleUrl: './competition.component.css'
 })

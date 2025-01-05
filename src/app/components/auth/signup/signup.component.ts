@@ -55,9 +55,10 @@ export class SignupComponent {
           this.isSubmitting = false;
         }
       });
-    } else {
-      this.markFormGroupTouched(this.signupForm);
-    }
+    } 
+    // else {
+    //   this.markFormGroupTouched(this.signupForm);
+    // }
   }
 
   // Helper method to mark all controls as touched
