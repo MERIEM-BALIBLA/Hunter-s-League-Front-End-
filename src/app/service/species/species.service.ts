@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { PageResponse } from '../../core/interface/page-response';
 
 export interface Species {
   id: string;
@@ -21,11 +22,12 @@ export class SpeciesService {
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<Species[]> {
-    return this.http.get<{ content: Species[] }>(`${this.BASE_URL}/list`).pipe(
-      map(response => response.content),
-      tap(data => console.log('Species list data:', data))
-    );
+
+
+  getSpecies(page: number = 0, size: number = 3): Observable<PageResponse<Species>> {  
+       return this.http.get<PageResponse<Species>>(`${this.BASE_URL}/list?page=${page}&size=${size}`).pipe(
+         tap(data => console.log('Species data:', data))
+       );
   }
 
   save(species: Species): Observable<Species> {
@@ -40,4 +42,5 @@ export class SpeciesService {
   delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`);
   }  
+
 }

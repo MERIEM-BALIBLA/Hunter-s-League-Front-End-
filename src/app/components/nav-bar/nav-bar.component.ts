@@ -1,51 +1,3 @@
-// import { NgIf } from '@angular/common';
-// import { Component } from '@angular/core';
-// import { Router, RouterModule } from '@angular/router';
-// import { AuthService } from '../../service/auth/auth.service';
-
-// @Component({
-//   selector: 'app-nav-bar',
-//   standalone: true,
-//   imports: [RouterModule, NgIf],
-//   templateUrl: './nav-bar.component.html',
-//   styleUrl: './nav-bar.component.css'
-// })
-// export class NavBarComponent {
-
-//   menuAdmin = [
-//     { label: 'Dashboard', routerLink = "" },
-//   ];
-//   menuUser = [
-//     { label: 'Profile', routerLink = "" },
-//     { label: 'Species', routerLink = "" },
-//   ]
-//   menuJury = [
-//     { label: 'Hunt', routerLink = "" },
-//   ]
-  
-
-//   isMobileMenuOpen = false;
-//   isAuthenticated(): boolean {
-//     return !!localStorage.getItem('jwt'); // Vérifie si le token JWT existe dans le localStorage
-//   }
-
-//   constructor(private router: Router, private authservice: AuthService) {}
-
-//   // Toggle the mobile menu
-//   toggleMobileMenu() {
-//     this.isMobileMenuOpen = !this.isMobileMenuOpen;
-//   }
- 
-
-//   logout() {
-//     localStorage.removeItem('jwt'); // Supprimer le token JWT du localStorage
-//     this.router.navigate(['/login']); // Rediriger l'utilisateur vers la page de login
-//   }
-
- 
-
-  
-// }
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
@@ -65,12 +17,13 @@ interface MenuItem {
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit, OnDestroy {
+  
   menuAdmin: MenuItem[] = [
     { label: 'Dashboard', routerLink: '/dash' },
   ];
   menuUser: MenuItem[] = [
     { label: 'Settings', routerLink: '/settings' },
-    { label: 'Species', routerLink: '/' },
+    { label: 'Species', routerLink: '/species_page' },
   ];
   menuJury: MenuItem[] = [
     { label: 'Hunt', routerLink: '/jury/hunt' },

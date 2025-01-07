@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import 'preline';
-import { SideComponent } from './side.component';
 
-describe('SideComponent', () => {
-  let component: SideComponent;
-  let fixture: ComponentFixture<SideComponent>;
+import { SpeciesPageComponent } from './species-page.component';
+
+describe('SpeciesPageComponent', () => {
+  let component: SpeciesPageComponent;
+  let fixture: ComponentFixture<SpeciesPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SideComponent]
+      imports: [SpeciesPageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SideComponent);
+    fixture = TestBed.createComponent(SpeciesPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

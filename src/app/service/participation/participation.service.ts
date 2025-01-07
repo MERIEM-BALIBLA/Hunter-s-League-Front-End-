@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Participation {
-  userName: string,
   competitionCode: string
 }
 
@@ -17,6 +16,6 @@ export class ParticipationService {
 
   save(data: Participation): Observable<void>{
     console.log('Sending to backend:', data);
-    return this.http.post<void>(`${this.BASE_URL}/save`, data)
+    return this.http.post<void>(`${this.BASE_URL}/create`, data)
   }
 }

@@ -13,20 +13,59 @@ import { SideComponent } from '../../Admin/Barr/side/side.component';
   imports: [CommonModule, CreateSpeciesComponent, UpdateSpeciesComponent, SideComponent]
 })
 export class SpeciesComponent implements OnInit {
-  speciesList: Species[] = []; // Array to hold species data
+  speciesList: Species[] = []; 
+  currentPage = 0;
+  pageSize = 4;
+  totalPages = 0;
+  totalElements = 0;
+  protected Math = Math;
 
   constructor(private speciesService: SpeciesService) { }
 
   ngOnInit(): void {
-    this.speciesService.list().subscribe((data: Species[]) => {
-      this.speciesList = data; // Assign the fetched data to the speciesList property
-    });
+    this.loadSpecies();
   }
+
+  loadSpecies(): void {
+      this.speciesService.getSpecies(this.currentPage, this.pageSize).subscribe({
+        next: (response) => {
+          this.speciesList = response.content;
+          this.totalPages = response.totalPages;
+          this.totalElements = response.totalElements;
+          console.log('competitions loaded:', this.speciesList);
+        },
+        error: (error) => {
+          console.error('Error fetching competitions:', error);
+        }
+      });
+    }
+
+  onPageChange(page: number): void {
+      this.currentPage = page;
+      this.loadSpecies();
+    }
+  
+    get visiblePages(): number[] {
+      const maxPages = 5;
+      if (this.totalPages <= maxPages) {
+        return Array(this.totalPages).fill(0).map((_, i) => i);
+      }
+  
+      let start = Math.max(0, this.currentPage - Math.floor(maxPages / 2));
+      let end = Math.min(this.totalPages - 1, start + maxPages - 1);
+  
+      if (end - start + 1 < maxPages) {
+        start = Math.max(0, end - maxPages + 1);
+      }
+  
+      return Array(end - start + 1).fill(0).map((_, i) => start + i);
+    }
 
   onDelete(id: string): void{
     this.speciesService.delete(id).subscribe({
       next: () => {
-        this.speciesList = this.speciesList.filter(species => species.id !== id);
+        // this.speciesList = this.speciesList.filter(species => species.id !== id);
+        this.loadSpecies(); // Recharger la liste des espèces après la suppression
       },
       error: (error) => {
         console.error('Failed to delete species:', error);

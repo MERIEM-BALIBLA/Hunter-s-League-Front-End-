@@ -113,9 +113,10 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
-import { SignUpRequest } from '../../interface/auth/signup-request.interface';
-import { LoginRequest } from '../../interface/auth/login-request.interface';
+
 import { Router } from '@angular/router';
+import { SignUpRequest } from '../../core/interface/auth/signup-request.interface';
+import { LoginRequest } from '../../core/interface/auth/login-request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -126,6 +127,9 @@ export class AuthService {
   
   private userRoleSubject = new BehaviorSubject<string | null>(this.getUserRoleFromToken());
   userRole$ = this.userRoleSubject.asObservable();
+
+  private usernameSubject = new BehaviorSubject<string | null>(this.getUsernameFromToken());
+  username$ = this.usernameSubject.asObservable();
 
   private readonly BASE_URL = 'http://localhost:8080/api/auth';
 
@@ -183,6 +187,21 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'An error occurred';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = error.error.message;
+    } else {
+      errorMessage = error.error.message || 'Server error';
+    }
+    return throwError(() => ({
+      error: {
+        message: errorMessage,
+      },
+    }));
+  }
+
+  // ---------------------- extract Role
   getUserRole(): string | null {
     return this.userRoleSubject.value;
   }
@@ -205,18 +224,30 @@ export class AuthService {
     return token ? this.extractRoleFromToken(token) : null;
   }
 
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An error occurred';
-    if (error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = error.error.message || 'Server error';
+ 
+  // --------------- extract UserName
+
+  private extractUsernameFromToken(token: string): string | null {
+    try {
+      const tokenParts = token.split('.');
+      if (tokenParts.length === 3) {
+        const payload = JSON.parse(atob(tokenParts[1]));
+        return payload.sub || null; // 'sub' is commonly used for username in JWTs
+      }
+    } catch (error) {
+      console.error('Error extracting username from token:', error);
     }
-    return throwError(() => ({
-      error: {
-        message: errorMessage,
-      },
-    }));
+    return null;
   }
+
+  private getUsernameFromToken(): string | null {
+    const token = localStorage.getItem('jwt');
+    return token ? this.extractUsernameFromToken(token) : null;
+  }
+  
+  getUsername(): string | null {
+    return this.usernameSubject.value;
+  }
+
 }
 

@@ -1,7 +1,18 @@
-<body class="relative bg-yellow-50 overflow-hidden max-h-screen flex">
+<body class="relative bg-zinc-50 overflow-hidden max-h-screen flex">
   <app-side/>
-
-  <div class="container mx-auto py-12 relative p-8">
+  <div class="container mx-auto py-12 relative py-20 ">
+    <div>
+      <label
+      for="my_modal_6" class="btn"
+      title="Add New"
+      class="group cursor-pointer text-lime-700 hover:text-green-600 backdrop-blur-lg bg-gradient-to-tr from-transparent via-[rgba(121,121,121,0.16)] to-transparent rounded-md py-2 px-6 shadow hover:shadow-green-600 duration-700"
+  
+    >
+      Add a new Species
+    </label>
+  
+    </div>
+    
       <div class="shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -44,6 +55,86 @@
               </tr>
             </tbody>
           </table>
+          <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <div class="flex flex-1 justify-between sm:hidden">
+              <!-- Version mobile -->
+              <button
+                [disabled]="currentPage === 0"
+                (click)="onPageChange(currentPage - 1)"
+                class="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                [ngClass]="{'opacity-50 cursor-not-allowed': currentPage === 0}"
+              >
+                Previous
+              </button>
+              <button
+                [disabled]="currentPage === totalPages - 1"
+                (click)="onPageChange(currentPage + 1)"
+                class="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                [ngClass]="{'opacity-50 cursor-not-allowed': currentPage === totalPages - 1}"
+              >
+                Next
+              </button>
+            </div>
+          
+            <!-- Version desktop -->
+            <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+              <div>
+                <p class="text-sm text-gray-700">
+                  Total
+                  <!-- <span class="font-medium">{{ currentPage * pageSize + 1 }}</span>
+                  to
+                  <span class="font-medium">{{ Math.min((currentPage + 1) * pageSize, totalElements) }}</span>
+                  of -->
+                  <span class="font-medium">{{ totalElements }}</span>
+                  <!-- results -->
+                </p>
+              </div>
+              
+              <div>
+                <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                  <!-- Bouton Previous -->
+                  <button
+                    [disabled]="currentPage === 0"
+                    (click)="onPageChange(currentPage - 1)"
+                    class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                    [ngClass]="{'opacity-50 cursor-not-allowed': currentPage === 0}"
+                  >
+                    <span class="sr-only">Previous</span>
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+          
+                  <!-- Numéros de page -->
+                  <ng-container *ngFor="let page of visiblePages">
+                    <button
+                      (click)="onPageChange(page)"
+                      class="relative inline-flex items-center px-4 py-2 text-sm font-semibold focus:z-20"
+                      [ngClass]="{
+                        'bg-blue-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600': currentPage === page,
+                        'text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0': currentPage !== page
+                      }"
+                    >
+                      {{ page + 1 }}
+                    </button>
+                  </ng-container>
+          
+                  <!-- Bouton Next -->
+                  <button
+                    [disabled]="currentPage === totalPages - 1"
+                    (click)="onPageChange(currentPage + 1)"
+                    class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                    [ngClass]="{'opacity-50 cursor-not-allowed': currentPage === totalPages - 1}"
+                  >
+                    <span class="sr-only">Next</span>
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+                </nav>
+              </div>
+            </div>
+          </div>
       
           <!-- Display no data message if speciesList is empty -->
           <ng-template #noData>
@@ -53,27 +144,7 @@
   </div>
 
   <!-- Modal button -->
-  <label
-    for="my_modal_6" class="btn"
-    title="Add New"
-    class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute right-4 top-60"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="50px"
-      height="50px"
-      viewBox="0 0 24 24"
-      class="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
-    >
-      <path
-        d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-        stroke-width="1.5"
-      ></path>
-      <path d="M8 12H16" stroke-width="1.5"></path>
-      <path d="M12 16V8" stroke-width="1.5"></path>
-    </svg>
-  </label>
-
+  
   <app-create-species/>
   <app-update-species/>
 

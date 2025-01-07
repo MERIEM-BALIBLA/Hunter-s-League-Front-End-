@@ -1,9 +1,13 @@
-<div class="py-8 bg-gradient-to-r from-emerald-700 to-emerald-900">
+<div 
+class="py-8"
+style="background-image: url('https://media.cntraveler.com/photos/5eb18e42fc043ed5d9779733/16:9/w_4288,h_2412,c_limit/BlackForest-Germany-GettyImages-147180370.jpg'); background-size: cover; background-position: center;"
+>
   <div class="max-w-5xl mx-auto font-[sans-serif] p-6 border rounded-lg bg-zinc-50">
-    <div class="text-center mb-16">
-      <a href="javascript:void(0)"><img
-        src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-52 inline-block' />
-      </a>
+    <div class="text-center mb-16 flex flex-col items-center">
+      <div class="flex-shrink-0 flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><rect width="512" height="512" fill="none"/><path fill="#07461f" d="M430.8 28.36c-36.5-.71-144 71.74-134 89.74c10.6 19.2 44.3 36.9 55.1 33.2c85.4-29.4 94.7-116.16 86.5-121.11c-2-1.19-4.5-1.78-7.6-1.83m-349.64 0c-3.1 0-5.6.6-7.6 1.8c-8.2 4.9 1.1 91.74 86.34 121.14c10.8 3.7 44.5-14 55.1-33.2c10-18-97.4-90.54-133.84-89.74M36.85 193c-12 80.3 47.31 135.2 106.45 147.1c47.8 9.5 86-28.5 83.3-38.6c-6.8-25.7-134.94-100-189.75-108.5m438.25 0c-54.8 8.5-183.1 82.8-189.9 108.5c-2.7 10.1 35.5 48.1 83.3 38.6c59.3-11.9 118.6-66.8 106.6-147.1M93.16 378.8c-2.9.1-5.4.5-7.3 1.2c2.8 61.4 74.04 103.8 88.14 103.6c23.3-.3 46.1-22.4 46.5-38.5c.6-23-93.4-66.9-127.34-66.3m325.64 0c-34.1-.6-128.1 43.3-127.5 66.3c.4 16.1 23.2 38.2 46.5 38.5c14.1.2 85.5-42.2 88.3-103.6c-1.9-.7-4.4-1.1-7.3-1.2"/></svg>
+        <span class="text-2xl font-bold text-zinc-600 ml-4">HUNTERS</span>
+      </div>
       <h4 class="text-gray-800 text-base font-semibold mt-6">Sign up into your account</h4>
     </div>
 
@@ -109,9 +113,11 @@
     <div class="py-12 text-center">
       <p class="text-gray-600">
         You have already account?
-        <a class="whitespace-nowrap font-semibold text-gray-900 underline underline-offset-4">Sign up for free.</a>
+        <a routerLink = "/login" routerLinkActive="active" class="whitespace-nowrap font-semibold text-gray-900 underline underline-offset-4">Sign up for free.</a>
       </p>
     </div>
+    
+    
   </div>
 
 </div>

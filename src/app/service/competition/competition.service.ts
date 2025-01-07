@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { PageResponse } from '../../core/interface/page-response';
 
 export interface Competition {
   id: string;
@@ -30,7 +31,13 @@ export class CompetitionService {
      );
    }
 
-   save(data: Competition): Observable<Competition>{
+   getCompetitionsList(page: number = 0, size: number = 3): Observable<PageResponse<Competition>> {  // Changé size=10 à size=3
+       return this.http.get<PageResponse<Competition>>(`${this.BASE_URL}/list?page=${page}&size=${size}`).pipe(
+         tap(data => console.log('Competition data:', data))
+       );
+    }
+
+  save(data: Competition): Observable<Competition>{
     console.log(data);
     return this.http.post<Competition>(`${this.BASE_URL}/create`, data)
     .pipe(
@@ -40,11 +47,6 @@ export class CompetitionService {
           })
         );
    }
-
-  //  delete(id: string): Observable<void>{
-  //   console.log(id);
-  //     return this.http.delete<void>(`${this.BASE_URL}/${id}`);
-  //  }
 
   delete(id: string): Observable<void> {
     if (!id) {

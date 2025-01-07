@@ -37,7 +37,7 @@ export class UserService {
   }
 
  
-  updateUser(role: string, id: string): Observable<UserDTO> {
+  updateUserRole(role: string, id: string): Observable<UserDTO> {
     if (!id) {
         throw new Error('User ID is required');
     }
@@ -53,4 +53,14 @@ export class UserService {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`);
   }
 
+  getUserInfo(): Observable<UserDTO> {
+    return this.http.get<UserDTO>(`${this.BASE_URL}/profile`).pipe(
+      tap(user => console.log('User Data:', user))
+    );
+  }
+
+  updateUser(data: UserDTO, id: string): Observable<UserDTO> {
+    return this.http.put<UserDTO>(`${this.BASE_URL}/${id}`, data);
+  }
+  
 }
