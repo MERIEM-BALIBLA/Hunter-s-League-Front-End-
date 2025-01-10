@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Species, SpeciesService } from '../../service/species/species.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-species-page',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './species-page.component.html',
   styleUrl: './species-page.component.css'
 })
@@ -12,7 +13,7 @@ export class SpeciesPageComponent implements OnInit{
 
   species : Species[] = [];
   currentPage = 0;
-  pageSize = 4;
+  pageSize = 8;
   totalPages = 0;
   totalElements = 0;
   protected Math = Math;

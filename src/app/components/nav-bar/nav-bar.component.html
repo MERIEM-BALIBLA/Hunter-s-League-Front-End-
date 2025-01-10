@@ -4,18 +4,19 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><rect width="512" height="512" fill="none"/><path fill="#07461f" d="M430.8 28.36c-36.5-.71-144 71.74-134 89.74c10.6 19.2 44.3 36.9 55.1 33.2c85.4-29.4 94.7-116.16 86.5-121.11c-2-1.19-4.5-1.78-7.6-1.83m-349.64 0c-3.1 0-5.6.6-7.6 1.8c-8.2 4.9 1.1 91.74 86.34 121.14c10.8 3.7 44.5-14 55.1-33.2c10-18-97.4-90.54-133.84-89.74M36.85 193c-12 80.3 47.31 135.2 106.45 147.1c47.8 9.5 86-28.5 83.3-38.6c-6.8-25.7-134.94-100-189.75-108.5m438.25 0c-54.8 8.5-183.1 82.8-189.9 108.5c-2.7 10.1 35.5 48.1 83.3 38.6c59.3-11.9 118.6-66.8 106.6-147.1M93.16 378.8c-2.9.1-5.4.5-7.3 1.2c2.8 61.4 74.04 103.8 88.14 103.6c23.3-.3 46.1-22.4 46.5-38.5c.6-23-93.4-66.9-127.34-66.3m325.64 0c-34.1-.6-128.1 43.3-127.5 66.3c.4 16.1 23.2 38.2 46.5 38.5c14.1.2 85.5-42.2 88.3-103.6c-1.9-.7-4.4-1.1-7.3-1.2"/></svg>
-            <span class="text-2xl font-bold text-brown-900 ml-4">HUNTERS</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><rect width="512" height="512" fill="none"/><path fill="#07461f" d="m187.406 22.22l-41.562 41.843l62.875 29.843l-8 16.875l-68.845-32.655L59.97 150.53l33.31 96.97l56.876-7.156l10.53-42.47l18.126 4.47l-45.843 185.25l55.31-49.656l10-9l4.94 12.5l14.81 37.53l31.25-41.624l8.126-10.844l7.25 11.47l30.406 48.217l22.657-46.75l5.092-10.5l9.125 7.25l62.532 49.782l-62.814-182.22l17.656-6.094l12.782 37.063l60.562-.94l26.47-101.874l-72.72-62.344l-70.125 38.844l-9.06-16.375l64.03-35.468l-29.75-25.53l-144.094-8.813zm190.688 85.5l13.28 67.218l-107.28-16.25l94-50.97zm-246.188.936L229.97 160l-116.25 13.47zm123.188 122.5l55.844 64.75l-36.25 12.875l-17.407-42.655l-15.374 43.344l-35.344-13.564l48.532-64.75zm74.344 126.938L304.53 409.47l-7.342 15.155l-8.97-14.25l-32.124-50.97l-33.156 44.19l-10.063 13.342l-6.125-15.53l-15.97-40.594l-30.436 27.312l25.53 66.406l61.407 35.22l98.814-39.563l16.937-65.343l-33.592-26.75z"/></svg>            <span class="text-2xl font-bold text-brown-900 ml-4">HUNTERS</span>
           </div>
         </div>
   
         <div class="hidden md:flex items-center space-x-4 text-brown-300 font-bold text-base">
           <ng-container *ngIf="isLoggedIn$ | async" >
+            <a routerLink = "/podium" routerLinkActive="active" class="px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Podium</a>
+            <a routerLink = "/home" routerLinkActive="active" class="px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Home</a>
+         
             <a *ngFor="let item of currentMenu" [routerLink]="item.routerLink" routerLinkActive="active" class="px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">
               {{ item.label }}
             </a>
-            <a routerLink = "/home" routerLinkActive="active" class="px-3 py-2 rounded-md hover:text-blue-600 hover:bg-gray-50">Home</a>
-          </ng-container>
+            </ng-container>
   
           <ng-container *ngIf="!(isLoggedIn$ | async)">
             <a routerLink="/login">
@@ -64,11 +65,14 @@
   
     <div *ngIf="isMobileMenuOpen" class="md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1">
+        <a routerLink = "/home" routerLinkActive="active" class="px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-50">Home</a>
+          <a routerLink = "/podium" routerLinkActive="active" class="px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-50">Podium</a>
+
         <ng-container *ngIf="isLoggedIn$ | async">
           <a *ngFor="let item of currentMenu" [routerLink]="item.routerLink" routerLinkActive="active" class="block px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-50" routerLinkActive="text-blue-600 bg-blue-50">
             {{ item.label }}
           </a>
-          <a routerLink = "/home" routerLinkActive="active" class="px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-50">Home</a>
+          
         </ng-container>
         <ng-container *ngIf="!(isLoggedIn$ | async)">
           <a routerLink="/login" routerLinkActive="active" class="block px-3 py-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-50" routerLinkActive="text-blue-600 bg-blue-50">Login</a>

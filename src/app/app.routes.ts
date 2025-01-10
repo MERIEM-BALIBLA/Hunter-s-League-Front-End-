@@ -11,6 +11,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './shared/home/home.component';
 import { CompetitionComponent } from './components/Competitions/competition/competition.component';
 import { SpeciesPageComponent } from './shared/species-page/species-page.component';
+import { PodiumComponent } from './shared/podium/podium.component';
 
 export const routes: Routes = [
     {
@@ -72,6 +73,11 @@ export const routes: Routes = [
     {
         path: "species_page",
         component: SpeciesPageComponent,
+        canActivate: [authGuardGuard],
+    },
+    {
+        path: "podium",
+        component: PodiumComponent,
         canActivate: [authGuardGuard],
     }
 ];

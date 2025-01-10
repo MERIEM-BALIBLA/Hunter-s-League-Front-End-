@@ -55,7 +55,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+          <div class="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
             <div class="flex flex-1 justify-between sm:hidden">
               <!-- Version mobile -->
               <button
@@ -145,7 +145,6 @@
 
   <!-- Modal button -->
   
-  <app-create-species/>
-  <app-update-species/>
+  <app-create-species (speciesAdded)="loadSpecies()"/>
 
 </body>

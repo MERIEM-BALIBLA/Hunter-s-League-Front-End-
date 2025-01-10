@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SpeciesService } from '../../../service/species/species.service';
 import { CommonModule } from '@angular/common';
@@ -11,6 +11,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./create-species.component.css']
 })
 export class CreateSpeciesComponent {
+  @Output() speciesAdded = new EventEmitter<void>();
+
+
   Form: FormGroup;
   isSubmitting = false;
   errorMessage = '';
@@ -44,8 +47,10 @@ export class CreateSpeciesComponent {
 
           // Réinitialiser le formulaire
           this.Form.reset();
+          this.speciesAdded.emit();
         },
         error: (error) => {
+          console.log(error);
           this.isSubmitting = false;
           this.errorMessage = 'Failed to add species';
           this.successMessage = ''; // Réinitialiser le message de succès si une erreur se produit
