@@ -1,67 +1,48 @@
+<!-- update-species.component.html -->
 <dialog id="my_modal_1" class="modal">
-    <div class="modal-box">
-      <h3 class="text-lg font-bold">Hello!</h3>
-      <div class="">
-        <form method="dialog">
-            <div class="flex flex-col pt-4">
-                <input
-                  formControlName="name"
-                  id="name"
-                  type="text"
-                  class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
-                  placeholder="Name"
-                />
-            </div>
-              <!-- Category -->
-            <div class="flex flex-col pt-4">
-                <select
-                id="category"
-                class="w-full bg-gray-100 text-gray-800 text-sm px-4 py-3.5 rounded-md focus:outline-none"
-                >
-                <option value="" disabled selected>Choose category</option>
-                <option value="SEA">SEA</option>
-                <option value="BIG-GAME">BIG GAME</option>
-                <option value="BIRD">BIRD</option>
-                </select>
-            </div>
-
-            <!-- Minimum Weight -->
-            <div class="flex flex-col pt-4">
-                <input
-                id="minimumWeight"
-                type="number"
-                class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
-                placeholder="Minimum Weight"
-                />
-            </div>
-
-            <!-- Difficulty -->
-            <div class="flex flex-col pt-4">
-                <select
-                id="difficulty"
-                class="w-full bg-gray-100 text-gray-800 text-sm px-4 py-3.5 rounded-md focus:outline-none"
-                >
-                <option value="" disabled selected>Choose difficulty</option>
-                <option value="COMMON">COMMON</option>
-                <option value="RARE">RARE</option>
-                <option value="EPIC">EPIC</option>
-                <option value="LEGENDARY">LEGENDARY</option>
-                </select>
-            </div>
-
-            <!-- Points -->
-            <div class="flex flex-col pt-4">
-                <input
-                id="points"
-                type="number"
-                class="w-full border-gray-300 bg-white py-2 px-4 text-base placeholder-gray-400 focus:outline-none"
-                placeholder="Points"
-                />
-            </div>
-            <div class="modal-action">
-                <button class="btn">Close</button>
-            </div>
-        </form>
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Update Species</h3>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Name</span>
+        </label>
+        <input type="text" formControlName="name" class="input input-bordered w-full" />
       </div>
-    </div>
-  </dialog>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Category</span>
+        </label>
+        <input type="text" formControlName="category" class="input input-bordered w-full" />
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Minimum Weight</span>
+        </label>
+        <input type="number" formControlName="minimumWeight" class="input input-bordered w-full" />
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Difficulty</span>
+        </label>
+        <input type="text" formControlName="difficulty" class="input input-bordered w-full" />
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">Points</span>
+        </label>
+        <input type="number" formControlName="points" class="input input-bordered w-full" />
+      </div>
+
+      <div class="modal-action">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="button" class="btn" onclick="my_modal_1.close()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</dialog>

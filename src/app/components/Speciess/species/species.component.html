@@ -47,9 +47,9 @@
                 <td class="px-6 py-4">{{ species.difficulty }}</td>
                 <td class="px-6 py-4">{{ species.points }}</td>
                 <td class="flex items-center px-6 py-4">
-                  <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+                  <button (click)="onEdit(species)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
 
-                  <button onclick="my_modal_1.showModal()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                  <!-- <button onclick="my_modal_1.showModal()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button> -->
                   <button (click)="onDelete(species.id)" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</button>
                 </td>
               </tr>
@@ -146,5 +146,9 @@
   <!-- Modal button -->
   
   <app-create-species (speciesAdded)="loadSpecies()"/>
+  <app-update-species 
+  [species]="selectedSpecies" 
+  (speciesUpdated)="loadSpecies()"
+></app-update-species>
 
 </body>

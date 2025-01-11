@@ -57,4 +57,13 @@ export class CompetitionService {
     return this.http.delete<void>(`${this.BASE_URL}/${id}`);
   }
   
+    update(competition: Competition, id: string): Observable<Competition> {
+      return this.http.put<Competition>(`${this.BASE_URL}/${id}`, competition).pipe(
+        catchError((error) => {
+          console.error('Erreur lors de la mise à jour de la competition :', error);
+          return throwError(() => error); 
+        })
+      );
+    }
+  
 }

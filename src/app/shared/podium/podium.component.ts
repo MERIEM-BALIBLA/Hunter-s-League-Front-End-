@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { combineLatest, filter, from, map, mergeMap, Observable, of } from 'rxjs';
+import { ParticipationService, Podium } from '../../service/participation/participation.service';
 
 @Component({
   selector: 'app-podium',
@@ -10,20 +10,15 @@ import { combineLatest, filter, from, map, mergeMap, Observable, of } from 'rxjs
   styleUrl: './podium.component.css'
 })
 export class PodiumComponent implements OnInit {
-  combinedValues: [number, string][] = [];
+  PodiumList: Podium[] = []
+  
+  constructor(private service: ParticipationService ){}
 
   ngOnInit() {
-      const observable1: Observable<number> = of(1, 2, 3, 4);
-      const observable2: Observable<string> = of('A', 'B', 'C', 'D');
-
-      const combinedObservable: Observable<[number, string]> = combineLatest(
-          observable1,
-          observable2
-      );
-
-      combinedObservable.subscribe((pair) => {
-          this.combinedValues.push(pair);
-      });
+      
   }
     
+  loadPodium(){
+    return this.service.getPodium().subscribe();
+  }
 }

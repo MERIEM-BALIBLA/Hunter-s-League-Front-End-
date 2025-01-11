@@ -14,7 +14,7 @@ export class UpdateUserComponent {
   isSubmit = false;
   errorMessage = '';
   successMessage = '';
-  userId: string = ''; // ID utilisateur à mettre à jour
+  userId: string = '';
 
   constructor(private userService: UserService, private fb: FormBuilder) {
     this.Form = this.fb.group({

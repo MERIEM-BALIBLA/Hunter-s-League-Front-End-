@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateSpeciesComponent } from '../create-species/create-species.component';
 import { Species, SpeciesService } from '../../../service/species/species.service';
@@ -20,10 +20,14 @@ export class SpeciesComponent implements OnInit {
   totalElements = 0;
   protected Math = Math;
 
+  @Output() speciesSelected = new EventEmitter<Species>();
+
   constructor(private speciesService: SpeciesService) { }
 
   ngOnInit(): void {
     this.loadSpecies();
+    // Composant parent
+
   }
 
   loadSpecies(): void {
@@ -61,15 +65,41 @@ export class SpeciesComponent implements OnInit {
       return Array(end - start + 1).fill(0).map((_, i) => start + i);
     }
 
-  onDelete(id: string): void{
-    this.speciesService.delete(id).subscribe({
-      next: () => {
-        // this.speciesList = this.speciesList.filter(species => species.id !== id);
-        this.loadSpecies(); // Recharger la liste des espèces après la suppression
-      },
-      error: (error) => {
-        console.error('Failed to delete species:', error);
+    onDelete(id: string): void {
+      if (confirm('Êtes-vous sûr de vouloir supprimer cette espèce ?')) {
+        this.speciesService.delete(id).subscribe({
+          next: () => {
+            this.speciesList = this.speciesList.filter(species => species.id !== id);
+    
+            if (this.speciesList.length === 0 && this.currentPage > 0) {
+              this.currentPage--;
+            }
+    
+            this.loadSpecies();
+          },
+          error: (error) => {
+            console.error('Erreur lors de la suppression de l\'espèce :', error);
+          }
+        });
       }
-    })
+    }
+
+
+ 
+    
+  selectedSpecies: Species | null = null; 
+
+
+  onEdit(species: Species): void {
+    this.selectedSpecies = species; // Stocke l'espèce sélectionnée
+    console.log(species)
+    const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
+    if (modal) {
+      modal.showModal();
+    }
   }
+
+  //  onSpeciesSelected(species: Species): void {
+  //   this.selectedSpecies = species;
+  // }
 }

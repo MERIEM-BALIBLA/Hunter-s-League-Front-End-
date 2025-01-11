@@ -6,6 +6,12 @@ export interface Participation {
   competitionCode: string
 }
 
+export interface Podium {
+  userName: string
+  competitionLocation: string
+  score: number
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,5 +23,9 @@ export class ParticipationService {
   save(data: Participation): Observable<void>{
     console.log('Sending to backend:', data);
     return this.http.post<void>(`${this.BASE_URL}/create`, data)
+  }
+
+  getPodium(): Observable<Podium[]>{
+     return this.http.get<Podium[]>(`${this.BASE_URL}/podium`)
   }
 }

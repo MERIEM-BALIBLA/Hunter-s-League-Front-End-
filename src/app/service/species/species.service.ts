@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { PageResponse } from '../../core/interface/page-response';
 
@@ -20,9 +20,11 @@ export interface Species {
 export class SpeciesService {
   private BASE_URL = 'http://localhost:8080/api/species';
 
+  private selectedSpecies = new BehaviorSubject<Species | null>(null);
+  // Observable pour l'espèce sélectionnée
+  selectedSpecies$: Observable<Species | null> = this.selectedSpecies.asObservable();
+
   constructor(private http: HttpClient) { }
-
-
 
   getSpecies(page: number = 0, size: number = 3): Observable<PageResponse<Species>> {  
        return this.http.get<PageResponse<Species>>(`${this.BASE_URL}/list?page=${page}&size=${size}`).pipe(
@@ -39,8 +41,22 @@ export class SpeciesService {
     );
   }
 
-  delete(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.BASE_URL}/${id}`);
-  }  
+
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${this.BASE_URL}/${id}`, 
+      { responseType: 'text' }  // Spécifier que la réponse est du texte
+    );
+  } 
+
+  update(species: Species, id: string): Observable<Species> {
+    return this.http.put<Species>(`${this.BASE_URL}/${id}`, species).pipe(
+      catchError((error) => {
+        console.error('Erreur lors de la mise à jour de l\'espèce :', error);
+        return throwError(() => error); 
+      })
+    );
+  }
+
+
 
 }

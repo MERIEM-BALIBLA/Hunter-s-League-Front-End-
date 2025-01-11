@@ -1,1 +1,48 @@
-<p>update-competition works!</p>
+<!-- update-species.component.html -->
+<dialog id="my_modal_1" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Update Species</h3>
+      <form  class="space-y-4">
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">location</span>
+          </label>
+          <input type="text" class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">speciesType</span>
+          </label>
+          <input type="text" class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">maxParticipants</span>
+          </label>
+          <input type="text" class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">minParticipants</span>
+          </label>
+          <input type="text" class="input input-bordered w-full" />
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">openRegistration</span>
+          </label>
+          <input type="text" class="input input-bordered w-full" />
+        </div>
+  
+        <div class="modal-action">
+          <button type="submit" class="btn btn-primary">Update</button>
+          <button type="button" class="btn" onclick="my_modal_1.close()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </dialog>

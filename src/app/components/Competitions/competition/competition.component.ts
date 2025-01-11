@@ -3,11 +3,12 @@ import { CreateCompetitionComponent } from '../create-competition/create-competi
 import { CommonModule } from '@angular/common';
 import { Competition, CompetitionService } from '../../../service/competition/competition.service';
 import { SideComponent } from '../../../components/Admin/Barr/side/side.component';
+import { UpdateCompetitionComponent } from '../update-competition/update-competition.component';
 
 @Component({
   selector: 'app-competition',
   standalone: true,
-  imports: [CreateCompetitionComponent, CommonModule, SideComponent],
+  imports: [CreateCompetitionComponent, CommonModule, SideComponent, UpdateCompetitionComponent],
   templateUrl: './competition.component.html',
   styleUrl: './competition.component.css'
 })
@@ -23,17 +24,6 @@ export class CompetitionComponent implements OnInit
  
    constructor(private competitionService: CompetitionService) {}
  
-  //  ngOnInit() {
-  //    this.competitionService.getCompetitions().subscribe({
-  //      next: (data) => {
-  //        this.competitions = data;
-  //      },
-  //      error: (error) => {
-  //        console.error('Error fetching competitions:', error);
-  //      }
-  //    });
-  //  }
-
   ngOnInit(): void {
     this.loadCompetition()
   }
@@ -82,9 +72,21 @@ export class CompetitionComponent implements OnInit
         this.competitions = this.competitions.filter(competition => competition.id !== id);
       },
       error: (error) => {
-        console.error('Failed to delete species:', error);
+        console.error('Failed to delete Competition:', error);
       }
     });
   }
+
+   selectedCompetition: Competition | null = null; 
+  
+  
+    onEdit(competition: Competition): void {
+      this.selectedCompetition = competition; // Stocke l'espèce sélectionnée
+      console.log(competition)
+      const modal = document.getElementById('my_modal_1') as HTMLDialogElement;
+      if (modal) {
+        modal.showModal();
+      }
+    }
   
 }
