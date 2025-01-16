@@ -26,7 +26,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     { label: 'Species', routerLink: '/species_page' },
   ];
   menuJury: MenuItem[] = [
-    { label: 'Hunt', routerLink: '/jury/hunt' },
+    { label: 'Hunt', routerLink: '/hunt' },
   ];
 
   currentMenu: MenuItem[] = [];

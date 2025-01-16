@@ -15,7 +15,7 @@ import { SideComponent } from '../../Admin/Barr/side/side.component';
 export class SpeciesComponent implements OnInit {
   speciesList: Species[] = []; 
   currentPage = 0;
-  pageSize = 4;
+  pageSize = 7;
   totalPages = 0;
   totalElements = 0;
   protected Math = Math;
@@ -83,9 +83,6 @@ export class SpeciesComponent implements OnInit {
         });
       }
     }
-
-
- 
     
   selectedSpecies: Species | null = null; 
 
@@ -99,7 +96,4 @@ export class SpeciesComponent implements OnInit {
     }
   }
 
-  //  onSpeciesSelected(species: Species): void {
-  //   this.selectedSpecies = species;
-  // }
 }

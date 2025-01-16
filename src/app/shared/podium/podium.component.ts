@@ -14,11 +14,22 @@ export class PodiumComponent implements OnInit {
   
   constructor(private service: ParticipationService ){}
 
-  ngOnInit() {
-      
-  }
     
   loadPodium(){
-    return this.service.getPodium().subscribe();
+    return this.service.getPodium().subscribe(
+     {
+      next: (data: Podium[]) => {
+        this.PodiumList = data; // Assign fetched data to PodiumList
+      },
+      error: (err) => {
+        console.error('Error loading podium data:', err); // Log errors if any
+      }
+     }
+    );
   }
+  ngOnInit(): void {
+    this.loadPodium(); // Call loadPodium on component initialization
+  }
+
+
 }

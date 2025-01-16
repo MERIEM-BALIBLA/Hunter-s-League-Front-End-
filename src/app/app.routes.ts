@@ -12,6 +12,7 @@ import { HomeComponent } from './shared/home/home.component';
 import { CompetitionComponent } from './components/Competitions/competition/competition.component';
 import { SpeciesPageComponent } from './shared/species-page/species-page.component';
 import { PodiumComponent } from './shared/podium/podium.component';
+import { HuntComponent } from './components/Hunts/hunt/hunt.component';
 
 export const routes: Routes = [
     {
@@ -79,5 +80,10 @@ export const routes: Routes = [
         path: "podium",
         component: PodiumComponent,
         canActivate: [authGuardGuard],
+    },
+    {
+        path: "hunt",
+        component: HuntComponent,
+        
     }
 ];
