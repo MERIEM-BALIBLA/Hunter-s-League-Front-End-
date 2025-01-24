@@ -2,8 +2,10 @@ import { createAction, props } from '@ngrx/store';
 import { Species } from '../../service/species/species.service';
 
 // Load actions
-export const loadSpecies = createAction('[Species] Load Species');
-
+export const loadSpecies = createAction(
+    '[Species] Load Species',
+    props<{ page: number; size: number }>()
+  );
 export const loadSpeciesSuccess = createAction('[Species] Load Species Success',props<{ species: Species[] }>());
 
 export const loadSpeciesFailure = createAction('[Species] Load Species Failure',props<{ error: any }>());

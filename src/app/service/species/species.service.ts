@@ -5,15 +5,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { PageResponse } from '../../core/interface/page-response';
 import { Species } from '../../core/interface/species';
 
-// export interface Species {
-//   id: string;
-//   name: string;
-//   category: string;
-//   minimumWeight: number;
-//   difficulty: string;
-//   points: number;
-// }
-
 @Injectable({
   providedIn: 'root'
 })
